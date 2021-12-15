@@ -17,11 +17,12 @@
       <div class="product-display">
         <div class="product-container">
           <div class="product-image">
-            <img :class="{ 'out-of-stock-img': !inStock }":src="image"> <!-- Attribute Binding -->
+            <img :class="{ 'out-of-stock-img': !inStock }":src="image"> <!-- Attribute Binding + Class & Style Binding -->
           </div>
           <div class="product-info">
-            <h1>{{ product }}</h1>
-            <p v-if="onSale">On Sale</p> <!-- Conditional Rendering -->
+            <h1>{{ title }}</h1>
+
+            <p v-if="onSale">{{ saleMessage }}</p> <!-- Conditional Rendering and Computed Properties -->
             <p v-if="inStock">In Stock</p> <!-- Conditional Rendering -->
             <!-- Commented Out <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p> Conditional Rendering -->
             <p v-else>Out of Stock</p> <!-- Conditional Rendering -->
@@ -32,9 +33,9 @@
               <li v-for="size in sizes">{{ size }}</li> <!-- List Rendering -->
             </ul>
             <div 
-              v-for="variant in variants" 
+              v-for="(variant, index) in variants" 
               :key="variant.id" 
-              @mouseover="updateImage(variant.image)"
+              @mouseover="updateVariant(index)"
               class="color-circle"
               :style="{ backgroundColor: variant.color }">
             </div> <!-- List Rendering: Binding variant id to key attribute-->
@@ -44,7 +45,7 @@
               :disabled="!inStock"
               @click="addToCart">
               Add to Cart
-            </button> <!-- Event Handling -->
+            </button> <!-- Event Handling + Class & Style Binding (disabledButton)-->
             <button class="button" @click="removeFromCart">Remove from Cart</button> <!-- Event Handling -->
             <!-- Commented Out <a :href="url">A simple URL link</a> Attribute Binding -->
           </div>
