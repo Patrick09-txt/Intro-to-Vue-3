@@ -6,7 +6,7 @@ const app = Vue.createApp({
             description: 'A placeholder description for Socks',
             image: './assets/images/socks_green.jpg',
             // url: 'https://www.zealand.dk/',
-            inStock: true,
+            inStock: false,
             // inventory: 8,
             onSale: true,
             details: ['50% cotton', '30% wool', '20% polyester'],
