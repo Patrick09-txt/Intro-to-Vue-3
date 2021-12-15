@@ -21,9 +21,16 @@
           <div class="product-info">
             <h1>{{ product }}</h1>
             <p v-if="onSale">On Sale</p> <!-- Conditional Rendering -->
-            <p v-if="inventory > 10">In Stock</p> <!-- Conditional Rendering -->
-            <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p> <!-- Conditional Rendering -->
+            <p v-if="inStock">In Stock</p> <!-- Conditional Rendering -->
+            <!-- Commented Out <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p> Conditional Rendering -->
             <p v-else>Out of Stock</p> <!-- Conditional Rendering -->
+            <ul>
+              <li v-for="detail in details">{{ detail }}</li> <!-- List Rendering -->
+            </ul>
+            <ul>
+              <li v-for="size in sizes">{{ size }}</li> <!-- List Rendering -->
+            </ul>
+            <div v-for="variant in variants" :key="variant.id">{{ variant.color }}</div> <!-- List Rendering: Binding variant id to key attribute-->
             <a :href="url">A simple URL link</a> <!-- Attribute Binding -->
           </div>
         </div>
