@@ -12,6 +12,7 @@
     <div id="app">
       <div class="nav-bar"></div>
 
+      <div class="cart">Cart({{ cart }})</div>
 
       <div class="product-display">
         <div class="product-container">
@@ -30,8 +31,10 @@
             <ul>
               <li v-for="size in sizes">{{ size }}</li> <!-- List Rendering -->
             </ul>
-            <div v-for="variant in variants" :key="variant.id">{{ variant.color }}</div> <!-- List Rendering: Binding variant id to key attribute-->
-            <a :href="url">A simple URL link</a> <!-- Attribute Binding -->
+            <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">{{ variant.color }}</div> <!-- List Rendering: Binding variant id to key attribute-->
+            <button class="button" @click="addToCart">Add to Cart</button> <!-- Event Handling -->
+            <button class="button" @click="removeFromCart">Remove from Cart</button> <!-- Event Handling -->
+            <!-- Commented Out <a :href="url">A simple URL link</a> Attribute Binding -->
           </div>
         </div>
       </div>
