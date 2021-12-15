@@ -41,7 +41,7 @@ app.component('product-display', {
       @click="addToCart">
       Add to Cart
     </button> <!-- Event Handling + Class & Style Binding (disabledButton)-->
-    <button class="button" @click="removeFromCart">Remove from Cart</button> <!-- Event Handling -->
+    <button class="button" :class="{ disabledButton: !inStock }" :disabled="!inStock" @click="removeFromCart">Remove from Cart</button> <!-- Event Handling -->
     <!-- Commented Out <a :href="url">A simple URL link</a> Attribute Binding -->
   </div>
 </div>
@@ -66,10 +66,10 @@ data() {
 },
 methods: {
     addToCart() {
-        this.cart += 1
+        this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
     },
     removeFromCart() {
-        this.cart -= 1
+        this.$emit('remove-from-cart', this.variants[this.selectedVariant].id)
     },
     updateVariant(index) {
         this.selectedVariant = index
